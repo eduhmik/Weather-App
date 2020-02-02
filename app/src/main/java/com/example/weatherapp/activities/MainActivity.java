@@ -14,8 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.adapters.HourlyAdapter;
 import com.example.weatherapp.base.BaseActivity;
 import com.example.weatherapp.model.Currently;
+import com.example.weatherapp.model.Datum;
 import com.example.weatherapp.retrofit.ObjectResponse;
 import com.example.weatherapp.retrofit.ServiceGenerator;
 import com.example.weatherapp.retrofit.WeatherRequests;
@@ -24,12 +26,14 @@ import com.example.weatherapp.tools.SweetAlertDialog;
 import com.robinhood.spark.SparkView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +52,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
     private static final long MIN_TIME_BW_UPDATES = 60 * 1000 * 1; // 1 minute
     protected String latitude, longitude;
     protected boolean gps_enabled, network_enabled;
+    private HourlyAdapter hourlyAdapter;
+    private ArrayList<Datum> datumArrayList = new ArrayList<>();
     @BindView(R.id.weather_icon)
     ImageView weatherIcon;
     @BindView(R.id.tv_temperature)
@@ -80,6 +86,8 @@ public class MainActivity extends BaseActivity implements LocationListener {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         checkLocationPermission();
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        hourlyRecyclerview.setLayoutManager(layoutManager);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         gps_enabled = locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -257,6 +265,23 @@ public class MainActivity extends BaseActivity implements LocationListener {
                     tvWind.setText(wind);
                     tvVisibility.setText(visibility);
                     tvUv.setText(uv);
+
+                    // set data on the hourly recyclerview
+                    try {
+                        if (response.body() != null && response.isSuccessful()) {
+                            ArrayList<Datum> resp = response.body().getHourly().getData();
+                            datumArrayList.clear();
+                            datumArrayList.addAll(resp);
+                            hourlyAdapter = new HourlyAdapter(getBaseContext(), datumArrayList);
+                            hourlyRecyclerview.setAdapter(hourlyAdapter);
+                        } else {
+                            showToast("Please try again");
+                        }
+                    } catch (Exception e) {
+                        datumArrayList.clear();
+                        hourlyAdapter.notifyDataSetChanged();
+                        e.printStackTrace();
+                    }
                 } else {
                     showToast("No response from server");
                     showSweetDialog("Failed!", "Fetching weather details failed", SweetAlertDialog.ERROR_TYPE, "Got it!",new SweetAlertDialog.OnSweetClickListener() {
