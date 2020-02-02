@@ -157,7 +157,7 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center_horizontal"
                             android:text="Humidity"
-                            android:textSize="20sp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textStyle="bold" />
 
                         <TextView
@@ -178,7 +178,7 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center_horizontal"
                             android:text="Wind"
-                            android:textSize="20sp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textStyle="bold" />
 
                         <TextView
@@ -212,7 +212,7 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center_horizontal"
                             android:text="Visibility"
-                            android:textSize="20sp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textStyle="bold" />
 
                         <TextView
@@ -233,7 +233,7 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center_horizontal"
                             android:text="UV"
-                            android:textSize="20sp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textStyle="bold" />
 
                         <TextView
