@@ -19,7 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
-    private static final String BASE_URL = "https://api.svrf.com/v1/";
+    private static final String BASE_URL = "https://api.darksky.net/forecast/664d597a7c0f75c4a1b8bdd6ac3f6e0d/";
 
     private static Gson gson = new GsonBuilder()
             .setLenient()
