@@ -18,3 +18,5 @@ git clone https://github.com/eduhmik/Weather-App.git
 
 ### Splash Screen Page
 The User will the be presented with the SplashScreen Page
+
+<img src="https://github.com/jumaallan/AndelaMedManager/blob/master/screenshots/andela-google-auth.png" width="280"/>
