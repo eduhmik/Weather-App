@@ -1,6 +1,7 @@
 package com.example.weatherapp.retrofit;
 
 import com.example.weatherapp.model.Currently;
+import com.example.weatherapp.model.Daily;
 import com.example.weatherapp.model.Hourly;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -18,6 +19,14 @@ public class ObjectResponse<T> {
     @SerializedName("currently")
     @Expose
     private Currently currently;
+
+    public Daily getDaily() {
+        return daily;
+    }
+
+    @SerializedName("daily")
+    @Expose
+    private Daily daily;
     @SerializedName("hourly")
     @Expose
     private Hourly hourly;

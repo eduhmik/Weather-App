@@ -5,13 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class Hourly {
-    @SerializedName("summary")
-@Expose
-private String summary;
+public class Daily {
     @SerializedName("icon")
     @Expose
     private String icon;
+
+    @SerializedName("summary")
+    @Expose
+    private String summary;
     @SerializedName("data")
     @Expose
     private ArrayList<Datum> data = null;

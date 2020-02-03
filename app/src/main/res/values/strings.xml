@@ -2,7 +2,8 @@
     <string name="app_name">WeatherApp</string>
     <string name="title_location_permission"> Location permission </string>
     <string name="text_location_permission"> Grant location permissions </string>\
-    <string name="ok"> Yes </string>
+    <string name="ok"> SELECT </string>
+    <string name="cancel"> CANCEL </string>
     <string name="explanation_permission_location_request">We are requesting the location permission as it is necessary for the app to perform search functionality properly.\nPlease select \"Grant Permission\" to try again and \"Cancel \" to deny permission."</string>
     <string name="choose">Choose an installation engineer to assign devices, here</string>
     <string name="chooseContractor">Choose a contractor, here</string>

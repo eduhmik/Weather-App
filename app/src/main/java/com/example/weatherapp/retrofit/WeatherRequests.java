@@ -17,9 +17,9 @@ public interface WeatherRequests {
 
     @GET("{latitude},{longitude},{time}")
     @Headers({ "Content-Type: application/x-www-form-urlencoded; charset=UTF-8", "Accept: application/json" })
-    Call<ObjectResponse> getPastFutureWeather(
+    Call<ObjectResponse<Currently>> getPastFutureWeather(
             @Path("latitude") String latitude,
             @Path("longitude") String longitude,
-            @Path("time") String time
+            @Path("time") Long time
     );
 }

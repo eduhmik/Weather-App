@@ -16,6 +16,15 @@ public class Datum {
     @SerializedName("apparentTemperature")
     @Expose
     private Double apparentTemperature;
+
+    public Double getApparentTemperatureHigh() {
+        return apparentTemperatureHigh;
+    }
+
+    @SerializedName("apparentTemperatureHigh")
+    @Expose
+    private Double apparentTemperatureHigh;
+
     @SerializedName("humidity")
     @Expose
     private Double humidity;
