@@ -1,7 +1,6 @@
 package com.example.weatherapp.activities;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,10 +40,10 @@ import retrofit2.Response;
 
 public class MainActivity extends BaseActivity {
     public Calendar calendarDate, calendarTime;
-    Long timePicked;
+    long time;
     String lat;
     String longitude1;
-    public boolean pickDateSet;
+    public boolean pickDateSet, pickTimeSet;
     private HourlyAdapter hourlyAdapter;
     private ArrayList<Datum> datumArrayList = new ArrayList<>();
     private ArrayList<Datum> dailyArrayList = new ArrayList<>();
@@ -211,24 +210,14 @@ public class MainActivity extends BaseActivity {
                             calendarDate.set(Calendar.YEAR, year);
                             calendarDate.set(Calendar.MONTH, month);
                             calendarDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                            timePicked = calendarDate.getTimeInMillis();
+                            time = calendarDate.getTimeInMillis()/1000L;
                             SimpleDateFormat postFormater = new SimpleDateFormat("EEEE, MMMM dd, yyyy");
-                            String newDateStr = postFormater.format(timePicked);
+                            String newDateStr = postFormater.format(time);
                             tvDate.setText(newDateStr);
+                            fetchPastOrFutureWeatherDetails(lat, longitude1, time);
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
-            datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, getString(R.string.ok), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    if (which == DialogInterface.BUTTON_POSITIVE) {
-                        // Do Stuff
-                        datePickerDialog.dismiss();
-                        fetchPastOrFutureWeatherDetails(lat, longitude1, timePicked);
-                    } else if (which == DialogInterface.BUTTON_NEGATIVE) {
-                        datePickerDialog.dismiss();
-                    }
-                }
-            });
         }
     }
 
